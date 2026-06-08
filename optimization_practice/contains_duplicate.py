@@ -63,3 +63,32 @@ Optimized:   False  # O(n)
 =================================================
 
 """
+def has_duplicate_brute(nums):
+    # BRUTE-FORCE O(n^2) version
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
+    return False
+
+def has_duplicate_fast(nums):
+    # OPTIMIZED O(n) version using a SET
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
+
+
+if __name__ == "__main__":
+    raw_input = input("Enter numbers separated by spaces or commas: ").strip()
+    if raw_input:
+        nums = [int(x) for x in raw_input.replace(",", " ").split()]
+    else:
+        nums = []
+
+    print("Brute Force:", has_duplicate_brute(nums))
+    print("Optimized:  ", has_duplicate_fast(nums))
+
+
